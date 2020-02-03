@@ -7,7 +7,7 @@
 <body>
 <div id="firstLevel">
 	<h1>Первый уровень: </h1>
-	
+
 	<form method="post">
 	   <input type="text" name="name" placeholder="Ваше имя..."><br>
 	   <p>Ваша погода за окном: </p>
@@ -22,7 +22,8 @@
 </div><br>
 
 <?php
-//Первый уровень: 
+
+//Первый уровень:
 //Пример if-elseif-else:
 
 if (!empty($_POST)) {
@@ -30,10 +31,10 @@ if (!empty($_POST)) {
  $name = ($_POST['name'] !== '' && $_POST['name'] !== ' ') ? $_POST['name'] : '';
 
  if ($name) {
-      
+
       foreach ($_POST as $key => $value) {
          if ($key === 'weather') {
-         	
+
   	         if ($value === 'Ясно') {
   	              echo "$name Можете спокойно выходить на улицу!";
    	         }
@@ -51,9 +52,9 @@ if (!empty($_POST)) {
    	         }
    	         else{
    	    	     continue;
-   	         }  
+   	         }
 //Вариант переписаный под switch:
-  
+
   //  	    switch ($value) {
   //  	 	    case 'Ясно':
   //  	 		    echo "$name Можете спокойно выходить на улицу!";
@@ -69,12 +70,12 @@ if (!empty($_POST)) {
   //  	 	     	break;
   //  	 	    case 'Снег':
   // 	            echo "$name Одевайся теплее, там снег!";
-  //  	 	    	break;     	 		 	 	
+  //  	 	    	break;
   //  	 	    default:
   //  	 	        continue;
   //  	 		    break;
   //  	      }
-   	        }  
+   	        }
             else if ($key !== 'weather'){
                  continue;
             }
@@ -89,4 +90,3 @@ if (!empty($_POST)) {
 
 </body>
 </html>
-

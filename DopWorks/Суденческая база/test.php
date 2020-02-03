@@ -17,6 +17,7 @@ $GLOBALS['connect'] = mysqli_connect('127.0.0.1', 'root', '', 'test');
 </head>
 <body> 
   <div>
+   <span></span>
    <h3>Введите ваши данные:</h3>
     <form>
       <input type="text" name="first_name" class = 'info' placeholder="Ваше имя..."><br><br>
@@ -74,7 +75,7 @@ if (isset($_POST['values'])) {
     del($_POST['del']);
   }
   resu();
-  mysqli_close($GLOBALS['connect']);
+  // mysqli_close($GLOBALS['connect']);
 ?>
 </main>
 <script type="text/javascript" src="js.js"></script>
