@@ -17,7 +17,7 @@ function func($y){
         if ($value !== ' ') {
           $x++;
         }      
-        $allVal += $value;
+        @$allVal += $value;
       }
       else{
          break;

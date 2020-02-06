@@ -40,7 +40,7 @@
 	color: #1c1c1b;
 }
 #commit{
-	color: green;
+	color: #d1d3d3;
 	border-bottom: 2px solid black;
 }
 @media screen and (min-width: 200px) and (max-width: 390px){

@@ -45,6 +45,7 @@ $GLOBALS['speek'] = $speach[$var];
 
 function dele(){
   mysqli_query($GLOBALS['connect'], "UPDATE usedcities SET used = 'No' WHERE used = 'Yes'");
+  mysqli_query($GLOBALS['connect'], "DELETE FROM `usersUsedCities` WHERE `city` != ''");
 }
 function resu($f){
      $fWord = '';
@@ -61,21 +62,39 @@ function resu($f){
        }
      }
 }
-
+ 
 function cities($p){
-    $lWord = '';
-    $str = mb_strtolower($p);
-    $userTown = preg_split('//u', $str, null, PREG_SPLIT_NO_EMPTY); //город введенный пользователем
-    for ($i=0; $i < count($userTown); $i++) { 
-        if ($userTown[$i] == 'ь' || $userTown[$i] == 'ы' || $userTown[$i] == 'ъ') {
-           $lWord = $userTown[$i-1];
-        }else{
-          $lWord = $userTown[$i];
-        }
-    }
-    echo "<p id='myCity'>Ваш город: $p </p>";
-    resu($lWord);
+  $usedOrNo = '';
+  $stringLow = mb_strtolower($p);
+  $select = mysqli_query($GLOBALS['connect'], "SELECT * FROM `usersUsedCities`");
+  while ($r = mysqli_fetch_array($select)) {
+     if ($r['city'] === $stringLow) {
+        $usedOrNo = 'yes';
+        break;
+     }else{
+        $usedOrNo = 'no';
+     }
+  }
+  if ($usedOrNo === 'yes') {
+       echo "Вы использовали этот город! <br>";
+       echo "Не повторяйтесь! <br>";
+  }else{
+      $lWord = '';
+      $str = mb_strtolower($p);
+      mysqli_query($GLOBALS['connect'], "INSERT INTO `usersUsedCities` (`city`) VALUES ('$str')");
+      $userTown = preg_split('//u', $str, null, PREG_SPLIT_NO_EMPTY); //город введенный пользователем
+      for ($i=0; $i < count($userTown); $i++) { 
+          if ($userTown[$i] == 'ь' || $userTown[$i] == 'ы' || $userTown[$i] == 'ъ') {
+             $lWord = $userTown[$i-1];
+          }else{
+             $lWord = $userTown[$i];
+          }
+      }
+      echo "<p id='myCity'>Ваш город: $p </p>";
+      resu($lWord);
+  }
 }
+
 $maxChanse = 15;
 $pass = rand(0, $maxChanse);
 if (!empty($_POST['city']) && ($_POST['city'] !== '' && $_POST['city'] !== ' ') && $pass !== $maxChanse) {

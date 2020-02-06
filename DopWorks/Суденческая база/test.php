@@ -16,8 +16,8 @@ $GLOBALS['connect'] = mysqli_connect('127.0.0.1', 'root', '', 'test');
   <link href="https://fonts.googleapis.com/css?family=Marck+Script&display=swap" rel="stylesheet"> 
 </head>
 <body> 
+  <span></span>
   <div>
-   <span></span>
    <h3>Введите ваши данные:</h3>
     <form>
       <input type="text" name="first_name" class = 'info' placeholder="Ваше имя..."><br><br>
