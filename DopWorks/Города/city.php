@@ -8,9 +8,10 @@ $GLOBALS['connect'] = mysqli_connect('127.0.0.1', 'root', '', 'test');
   <meta name="viewport" content="width = device-width, user-scalable=no,
       initial-scale = 1.0, maximum-scale = 1.0, minimum-scale = 0.5">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
    
   <title>Игра в города...</title>
-  <script type="text/javascript" src="jQuery.js"></script>
+  <script src="jQuery.js"></script>
   <link href="city.css" rel="stylesheet" type="text/css"/>
   <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet"> 
   <link href="https://fonts.googleapis.com/css?family=Marck+Script&display=swap" rel="stylesheet"> 
@@ -19,7 +20,7 @@ $GLOBALS['connect'] = mysqli_connect('127.0.0.1', 'root', '', 'test');
   <span></span>
 <div id="main">
 <form>
-	<input type="text" id='city' name="city" placeholder="Введите город">
+	<input type="text" id='city' placeholder="Введите город">
   <input type="button" id='sub' name="sub" value="OK">
   <input type="button" id='reset' name="reset" value="Обновить игру">
 </form><br><br>
@@ -44,8 +45,8 @@ $var = rand(0, 11);
 $GLOBALS['speek'] = $speach[$var];
 
 function dele(){
-  mysqli_query($GLOBALS['connect'], "UPDATE usedcities SET used = 'No' WHERE used = 'Yes'");
-  mysqli_query($GLOBALS['connect'], "DELETE FROM `usersUsedCities` WHERE `city` != ''");
+  mysqli_query($GLOBALS['connect'], "UPDATE usedcities SET used = 'No' WHERE used = 'Yes';");
+  mysqli_query($GLOBALS['connect'], "DELETE FROM `usersUsedCities` WHERE `city` != '';");
 }
 function resu($f){
      $fWord = '';
@@ -97,8 +98,10 @@ function cities($p){
 
 $maxChanse = 15;
 $pass = rand(0, $maxChanse);
+
 if (!empty($_POST['city']) && ($_POST['city'] !== '' && $_POST['city'] !== ' ') && $pass !== $maxChanse) {
   cities($_POST['city']);
+  echo $_POST['city'];
 }
 elseif(isset($_POST['reset']) && $_POST['reset'] === 'yes'){
   dele();
@@ -114,6 +117,6 @@ else{
 mysqli_close($GLOBALS['connect']);
 ?>
 </div>
-<script type="text/javascript" src="js.js"></script>
+<script src="js.js"></script>
 </body>
 </html>

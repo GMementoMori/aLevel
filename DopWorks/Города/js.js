@@ -12,24 +12,21 @@ $(document).ready(function(){
           });
     } 
 
-   $("#sub").click(function(){
+  function add(){
          var city = $("#city").val();
       	 $.ajax({
              url: "city.php",
              data:({ city }),
              type: "POST",
              dataType: "html",
-             before: function (){
-                alert("Думаааю...");
-             },
              success: function (data) {
                 $("body").html(data); 
              }
           });
-    });
+    }
 
    $("#reset").click(del);
-
+   $("#sub").click(add);
 });
 
 

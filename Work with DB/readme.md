@@ -1,16 +1,16 @@
-(3DUMP)Команда которая выведет все устройста и их производителей:
+(3DUMP)Команда которая выведет всю информацию о выбраном курсе:
 
-select 
-    model as PRODUCTS,company as Company
-    from phones 
-inner join 
-    companies 
-    on(companies.id = phones.id_company) 
-union 
-select 
-    model,company 
-    from noutebooks 
-inner join 
-    companies 
-    on(companies.id = noutebooks.id_company);
+SELECT `courses`.`info`, 
+            group_concat(`teachers`.`info` separator ';') AS `quotes`, 
+            group_concat(`name` separator ';') AS `teachers`, 
+            group_concat(`index_photo` separator ';') AS `photo` 
+            FROM `courses` 
+            INNER JOIN `teachers` 
 
+            INNER JOIN `course_teachers` 
+            on (`course_teachers`.`id_course` = `courses`.`id` 
+            and 
+            `course_teachers`.`id_teacher` = `teachers`.`id`) 
+            WHERE `courses`.`title` = '$y';
+
+$y - Название курса.
