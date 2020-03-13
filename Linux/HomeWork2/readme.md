@@ -1,0 +1,1 @@
+     php script.php -h
