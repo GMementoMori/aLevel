@@ -1,0 +1,9 @@
+<?php
+$f = file($argv[1]);
+for ($i=0; $i <= count($f); $i++) { 
+	$x = $i;
+echo $f[$i];
+}
+echo "Строк в файле : $x\n";
+?>
+
