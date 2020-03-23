@@ -1,0 +1,68 @@
+#!/usr/bin/php7.3
+<?php
+   function to_array($object=''){
+      $i = 0;
+      foreach($object as $k => $v){
+         $i++;
+         if(is_object($v)){
+           $arr[$i] = (array)$v;
+         }
+         foreach ($v as $q => $x) {
+            if(is_object($x)){
+              $arr[$q] = (array)$x;
+            }
+         }
+      }  
+      return $arr;
+   }
+
+   function show_weather($nameArr){
+
+     foreach ($nameArr as $key => $value) {
+        foreach ($value as $k => $v) {
+          switch ($k) {
+            case 'description':
+              echo "In your city: $v \n";
+              break;
+            case 'temp':
+              echo "Temperature: $v °C \n";
+              break;
+            case 'feels_like':
+              echo "Feels like: $v °C \n";
+              break;
+            case 'temp_min':
+              echo "Minimal temperature: $v °C \n";
+              break;
+            case 'temp_max':
+              echo "Maximum teperature: $v °C \n";
+              break;
+            case 'humidity':
+              echo "Procent of humidity: $v % \n";
+              break;
+            case 'speed':
+              echo "Speed of wind: $v m/s \n";
+              break;
+            case 'sunrise':
+              echo "Sunrise at: $v \n";
+              break;
+            case 'sunset':
+              echo "Sunset at: $v \n";
+              break;
+            
+
+          }
+        }
+      }
+    }
+  if (isset($argv[1])) {
+    $city = $argv[1];
+    $url = "http://api.openweathermap.org/data/2.5/weather?q=".$city."&units=metric&appid=ebf37974297c176754ec62e0ac3fce61";
+    $contents = file_get_contents($url); 
+    $object = json_decode($contents);
+    $arrInfoWeather = @to_array($object);
+    show_weather($arrInfoWeather);
+  }else{
+    echo "Введите ваш город! \n";
+    echo "./weather {'cityname'} \n";
+  }
+?>
