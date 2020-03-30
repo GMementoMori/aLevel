@@ -67,14 +67,14 @@ class Cats extends Mammals
 	{
         $this -> info['animal_name'] = 'cat';
         $this -> info['kind'] = 'mammals';
-    	$this -> info['kind_eats'] = 'omnivorous';
+    	  $this -> info['kind_eats'] = 'omnivorous';
        	$this -> info['blood'] = 'warm-blooded';
        	if (isset($name, $breed, $character)) {
        	     $this -> info['name'] = $name;
              $this -> info['breed'] = $breed;
-        	 $this -> info['character'] = $character;
+        	   $this -> info['character'] = $character;
        	}else{
-       	   echo "Enter all info! <br>";
+       	     echo "Enter all info! <br>";
        }
 	}
 
@@ -171,8 +171,8 @@ class Cats extends Mammals
        	  echo "-Cat very happy and good rested!) <br><br>";
        	     $this -> info['mood'] -= 20;
              $this -> info['fatigue'] += 20;
-        	 $this -> info['hunger'] -= 20;      
-        	 $this -> info['thirst'] -= 20;        	    
+        	   $this -> info['hunger'] -= 20;      
+        	   $this -> info['thirst'] -= 20;        	    
        }
        // $this -> ckeck_state();
 	}
@@ -181,8 +181,8 @@ class Cats extends Mammals
        	  echo "-Cat has good eat!) <br><br>";
        	     $this -> info['mood'] += 10;
              $this -> info['fatigue'] -= 10;
-        	 $this -> info['hunger'] += 10;      
-        	 $this -> info['thirst'] -= 10;       	   	  
+        	   $this -> info['hunger'] += 10;      
+        	   $this -> info['thirst'] -= 10;       	   	  
        }
        elseif ($eats < 10) {
        	echo "-For cat is a pice of eat! It is not a full eat! <br><br>";
@@ -191,8 +191,8 @@ class Cats extends Mammals
        	  echo "-Cat very happy after goo eats!) <br><br>";
        	     $this -> info['mood'] += 20;
              $this -> info['fatigue'] -= 20;
-        	 $this -> info['hunger'] += 20;      
-        	 $this -> info['thirst'] -= 20;        	    
+        	   $this -> info['hunger'] += 20;      
+        	   $this -> info['thirst'] -= 20;        	    
        }
        // $this -> ckeck_state();
 	}
@@ -200,8 +200,8 @@ class Cats extends Mammals
        if ($wather <= 10) {
        	  echo "-May be more wather for your cat?!) <br><br>";
        	     $this -> info['mood'] += 10;
-        	 $this -> info['hunger'] += 1;      
-        	 $this -> info['thirst'] += 10;       	   	  
+        	   $this -> info['hunger'] += 1;      
+        	   $this -> info['thirst'] += 10;       	   	  
        }
        elseif ($wather < 10) {
        	echo "-Are you even greedy for water? <br><br>";
@@ -209,8 +209,8 @@ class Cats extends Mammals
        else{
        	  echo "-Your perfectly quenched your thirst!) <br><br>";
        	     $this -> info['mood'] += 20;
-        	 $this -> info['hunger'] += 1;      
-        	 $this -> info['thirst'] -= 20;        	    
+        	   $this -> info['hunger'] += 1;      
+        	   $this -> info['thirst'] -= 20;        	    
        }
        // $this -> ckeck_state();
 	}
