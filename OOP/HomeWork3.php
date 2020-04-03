@@ -32,17 +32,19 @@ class Exploit
            echo "<br> $key => $value <br>";
        }
    }   
-    function start(){
-       echo "<h3>Starting {$this -> name} on victim PC </h3>";
-       echo "<h4>Use functions: </h4>";
-       foreach ($this -> info['functions'] as $key => $value) {
-           echo "$key : $value <br>";
-       }
-       $this -> open_shell();
-   }
-   public function stop(){
-       echo "<h3>Stopping {$this -> name}... </h3>";
-   }    
+    function __call($function_name, $arguments){
+      if ($function_name === 'start') {
+         echo "<h3>Starting {$this -> name} on victim PC </h3>";
+         echo "<h4>Use functions: </h4>";
+         foreach ($this -> info['functions'] as $key => $value) {
+             echo "$key : $value <br>";
+         }
+         $this -> open_shell();
+      }
+      elseif ($function_name === 'stop') {
+         echo "<h3>Stopping {$this -> name}... </h3>";
+      }
+   }  
 }
 
 class Trojan extends Exploit
@@ -192,7 +194,6 @@ $nJrat -> info_of_socialSys();
 $nJrat -> turnToZombie();
 $nJrat -> spam_global_mail($type_spam);
 $nJrat -> info;
-//честно, единсвенное для этого кода логичное примениение магического метода. Остально, будет притянуто, я так считаю..
 
 // $nJrat -> steel_info();
 // $nJrat -> stop();
