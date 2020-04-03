@@ -6,16 +6,16 @@ class Exploit
 
    function __construct($functions, $name){
       foreach ($functions as $key => $value) {
-      	 $this -> info['functions'][] .= $value;
+         $this -> info['functions'][] .= $value;
       }
       $this -> name = $name;
    }
    protected function open_shell(){
-   	echo "<br> victim@PC# <br>";
+    echo "<br> victim@PC# <br>";
    }
-   public function get_info(){
+   public function __get($info){
       foreach ($this -> info as $key => $value) {
-       	 echo "<h3>$key </h3>";
+         echo "<h3>$key </h3>";
          foreach ($value as $k => $v) {
             echo " $k : $v <br>"; 
          }
@@ -26,19 +26,19 @@ class Exploit
       $this -> info['options']['rhost'] = $rhost;
       $this -> info['options']['port'] = $port;
    }
-   public function get_options(){
-   	   echo "<h3>OPTIONS</h3>";
-   	   foreach ($this -> info['options'] as $key => $value) {
+   public function get_options($options){
+       echo "<h3>OPTIONS</h3>";
+       foreach ($this -> info['options'] as $key => $value) {
            echo "<br> $key => $value <br>";
-   	   }
+       }
    }   
-   public function start(){
-   	   echo "<h3>Starting {$this -> name} on victim PC </h3>";
-   	   echo "<h4>Use functions: </h4>";
-   	   foreach ($this -> info['functions'] as $key => $value) {
+    function start(){
+       echo "<h3>Starting {$this -> name} on victim PC </h3>";
+       echo "<h4>Use functions: </h4>";
+       foreach ($this -> info['functions'] as $key => $value) {
            echo "$key : $value <br>";
-   	   }
-   	   $this -> open_shell();
+       }
+       $this -> open_shell();
    }
    public function stop(){
        echo "<h3>Stopping {$this -> name}... </h3>";
@@ -47,7 +47,7 @@ class Exploit
 
 class Trojan extends Exploit
 {
-	public function steel_info(){
+  public function steel_info(){
         $ip = $_SERVER['REMOTE_ADDR'];
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
         echo "<h3> STOLEN_INFO: </h3>";
@@ -55,72 +55,72 @@ class Trojan extends Exploit
         echo "Victim User_Agent : $user_agent <br>";
         echo "Another info: <br>"; //in developing...
         echo "<br>";
-	}
-	public function reboot_sys(){
+  }
+  public function reboot_sys(){
         echo "Victim pc has rebooted! <br>";
         echo "<br>";
-	}
-	public function break_sys(){
+  }
+  public function break_sys(){
         echo "Victim pc will break! <br>";
         echo "<br>";
-	}
-	public function remote_desktop(){
+  }
+  public function remote_desktop(){
        echo "Opening remote victim desktop ... <br>"; //in developing...
        echo "<br>";
-	}
+  }
 }
 
 class RATS extends Trojan//my favorit type remote control...
 {
-	protected $typeJoke = [
-		                   1 => 'play_sound',
-	                       2 => 'pint_something', 
-	                       3 => 'enter_in_program', 
-	                       4 =>'discotect_mouse', 
-	                       5 => 'delete_system'
-	                      ];
+  protected $typeJoke = [
+                       1 => 'play_sound',
+                         2 => 'pint_something', 
+                         3 => 'enter_in_program', 
+                         4 =>'discotect_mouse', 
+                         5 => 'delete_system'
+                        ];
 
     protected $typeSpam = [
-    	                   1 => 'Spam contacts in sms (only on Phones)',
+                         1 => 'Spam contacts in sms (only on Phones)',
                            2 => 'Spam contacts in email', 
                            3 => 'Spam contacts in social nets'
                            ];
 
-	public function joke($x){
+  public function joke($x){
        if (isset($x) && !empty($x)) {
-       	  if ($x === '-h') {
-       	  	echo "<h3>Type of jokes: </h3>";
+          if ($x === '-h') {
+            echo "<h3>Type of jokes: </h3>";
             foreach ($this -> typeJoke as $key => $value) {
-            	echo "$key : $value <br>";
+              echo "$key : $value <br>";
             }
-       	  }else{
-       	  	switch ($x) {
-       	  		case 1:
-       	  			echo "<br>-Play sound function selected, choise file .mp3 <br>";
-       	  			break;
-       	  	    case 2:
-       	  			echo "<br>-Print function selected, enter text of joke :) <br>";
-       	  			break;
-       	  	    case 3:
-       	  			echo "<br>-Function enter in program selected, choise program which will start! <br>";
-       	  			break;
-       	  	    case 4:
-       	  			echo "<br>-Mouse was disconect from sysem <br>";
-       	  			break;
-       	  	    case 5:
-       	  			echo "<br>-Ohhh, bad joke. Okey, system will be delete <br>";
-       	  			break;
-       	  	    
-       	  	}
-       	  }
+          }else{
+            switch ($x) {
+              case 1:
+                echo "<br>-Play sound function selected, choise file .mp3 <br>";
+                break;
+                case 2:
+                echo "<br>-Print function selected, enter text of joke :) <br>";
+                break;
+                case 3:
+                echo "<br>-Function enter in program selected, choise program which will start! <br>";
+                break;
+                case 4:
+                echo "<br>-Mouse was disconect from sysem <br>";
+                break;
+                case 5:
+                echo "<br>-Ohhh, bad joke. Okey, system will be delete <br>";
+                break;
+                
+            }
+          }
        }else{
-       	   echo "Enter type of joke, or print 'joke -h || --help'";
+           echo "Enter type of joke, or print 'joke -h || --help'";
        }
-	}	
+  } 
     public function info_of_socialSys(){
         echo "<h5>INFORMATIONS of victim from all social nets where entered victim... </h5>"; //in developing...
-	}
-	public function turnToZombie(){
+  }
+  public function turnToZombie(){
         echo "Reboot system of victim... <br>";
         echo "Starting proces of infecting... <br> ";
         echo '...Scaning all devices in localnet <br> ';
@@ -128,31 +128,31 @@ class RATS extends Trojan//my favorit type remote control...
         echo '...Infect all devices on the network <br> ';
         echo '...Get all info of infected devices <br> ';
         echo '...Take choise the device of all <br> ';
-	}
-	public function spam_global_mail($x){
+  }
+  public function spam_global_mail($x){
        if (isset($x) && !empty($x)) {
-       	  if ($x === '-h') {
-       	  	echo "<h3>Type of spam: </h3>";
+          if ($x === '-h') {
+            echo "<h3>Type of spam: </h3>";
             foreach ($this -> typeJoke as $key => $value) {
-            	echo "$key : $value <br>";
+              echo "$key : $value <br>";
             }
           }else{
-       	  	switch ($x) {
-       	  		case 1:
-       	  			echo "<br>-Selected type of spam : 'sms'. Starting smsing all... <br>";
-       	  			break;
-       	  	    case 2:
-       	  			echo "<br>-Selected type of spam : 'email'. Starting smsing on all contacts emails... <br>";
-       	  			break;
-       	  	    case 3:
-       	  			echo "<br>-Selected type of spam : 'social nets'. Starting analize and smsing all contacts... <br>";
-       	  			break;
-       	  	}
-       	  }
+            switch ($x) {
+              case 1:
+                echo "<br>-Selected type of spam : 'sms'. Starting smsing all... <br>";
+                break;
+                case 2:
+                echo "<br>-Selected type of spam : 'email'. Starting smsing on all contacts emails... <br>";
+                break;
+                case 3:
+                echo "<br>-Selected type of spam : 'social nets'. Starting analize and smsing all contacts... <br>";
+                break;
+            }
+          }
        }else{
-       	   echo "Enter type of spam, or print 'spam -h || --help'";
+           echo "Enter type of spam, or print 'spam -h || --help'";
        }
-	}
+  }
 }
 // $functions_ms17_010 = ['change logs', 'rebute sys', 'logout', 'cmd'];
 // $ms17_010 = new Exploit($functions_ms17_010, 'ms17_010');
@@ -191,13 +191,11 @@ $nJrat -> joke($type_joke);
 $nJrat -> info_of_socialSys();
 $nJrat -> turnToZombie();
 $nJrat -> spam_global_mail($type_spam);
+$nJrat -> info;
+//честно, единсвенное для этого кода логичное примениение магического метода. Остально, будет притянуто, я так считаю..
 
+// $nJrat -> steel_info();
 // $nJrat -> stop();
 
-
-//Open/Closed principle - реализовано путем инкапсуляции переменых и методов.Класс закрыт для изменений, но открыт для расширения в классах-наследниках
-//Liskov substitution principle - реализованно. Любой класс поменяйте местами, и межклассовый полиморфизм будет готов!
-//Dependency Inversion principle - реализовано. Експлоит, может быть абстрактным классом, 
-//так как функционал похож и эксплоит это давольно расплыввчатое понятие может быть :)
 
 ?>
