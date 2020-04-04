@@ -1,0 +1,9 @@
+<?php
+require_once("../views/button_exit.phtml");
+require_once("../models/controlDB.php");
+show_elements('text','txt');
+if (isset($_POST['exit'])) {
+	header("Location: ../../index.php");
+    session_destroy();
+}
+?>
