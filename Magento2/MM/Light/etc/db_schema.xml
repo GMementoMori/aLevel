@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mm_light" resource="default" engine="innodb" comment="mm light">
+        <column xsi:type="int"
+                name="product_id"
+                padding="10"
+                unsigned="true"
+                nullable="false"
+                identity="true"
+                comment="Product Id"/>
+        <column xsi:type="varchar"
+                name="name"
+                length="32"
+                nullable="false"
+                comment="Product name"
+        />
+        <column xsi:type="int"
+                name="price"
+                padding="3"
+                unsigned="true"
+                nullable="false"
+                identity="false"
+                comment="Product Price"
+        />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="product_id"/>
+        </constraint>
+    </table>
+</schema>
