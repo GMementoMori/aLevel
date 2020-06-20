@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="alevel_user" resource="default" engine="innodb" comment="Alevel Loser">
+        <column xsi:type="int"
+                name="user_id"
+                padding="10"
+                unsigned="true"
+                nullable="false"
+                identity="true"
+                comment="User Id"/>
+        <column xsi:type="varchar"
+                name="name"
+                length="32"
+                nullable="false"
+                comment="User name"
+        />
+        <column xsi:type="int"
+                name="age"
+                padding="3"
+                unsigned="true"
+                nullable="false"
+                identity="false"
+                comment="User Age"
+        />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="user_id"/>
+        </constraint>
+    </table>
+</schema>

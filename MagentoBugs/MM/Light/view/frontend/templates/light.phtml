@@ -1,0 +1,7 @@
+<?php
+$products = $block->getProductCollection();
+foreach ($products as $product) {
+    echo "<h2>Model: ".$product['name']."</h2>";
+    echo "<p>Price: ".$product['price']."</p>";
+    echo "<hr><br>";
+}
