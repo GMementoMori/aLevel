@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+        <menu>
+            <add
+                id="MM_QuickOrder::all"
+                title="Quick Order"
+                translate="title"
+                module="MM_QuickOrder"
+                sortOrder="20"
+                dependsOnModule="MM_QuickOrder"
+                resource="Sysint_MagentoAcademy::all"
+            />
+            <add
+                id="MM_QuickOrder::grid"
+                title="Quick Order"
+                translate="title"
+                module="MM_QuickOrder"
+                sortOrder="10"
+                parent="MM_QuickOrder::all"
+                action="mm_quickorder/grid/listing"
+                resource="MM_Light::grid"
+            />
+        </menu>
+</config>
