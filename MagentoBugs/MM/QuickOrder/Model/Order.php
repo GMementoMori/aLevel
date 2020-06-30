@@ -2,10 +2,11 @@
 
 namespace MM\QuickOrder\Model;
 
+use MM\QuickOrder\Api\Model\OrderInterface;
 use Magento\Framework\Model\AbstractModel;
 use MM\QuickOrder\Model\ResourceModel\Order as ResourceModel;
 
-class Order extends AbstractModel
+class Order extends AbstractModel implements OrderInterface
 {
     protected function _construct()
     {

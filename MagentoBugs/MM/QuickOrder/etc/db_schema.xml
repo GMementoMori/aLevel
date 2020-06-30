@@ -34,18 +34,6 @@
                 nullable="true"
                 comment="Email"
         />
-        <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="order_id"/>
-        </constraint>
-    </table>
-    <table name="mm_quickorder_admin" resource="default" engine="innodb" comment="Ouick Order Admin">
-        <column xsi:type="int"
-                name="id"
-                padding="10"
-                unsigned="true"
-                nullable="false"
-                identity="true"
-                comment="Id"/>
         <column xsi:type="varchar"
                name="create_at"
                length="32"
@@ -63,7 +51,7 @@
                 comment="Status"
         />
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="id"/>
+            <column name="order_id"/>
         </constraint>
     </table>
 </schema>
