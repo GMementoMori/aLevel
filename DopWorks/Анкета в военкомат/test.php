@@ -70,7 +70,6 @@ catch(Exception $e) {
   echo "-Исправте это пожалуйста!";
   echo "</div>";
 }
-
 ?>
 <script type="text/javascript" src="js.js"></script>
 </body>

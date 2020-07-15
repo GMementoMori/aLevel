@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  <preference for="MM\QuickOrder\Api\Model\OrderInterface"
+              type="MM\QuickOrder\Model\Order"/>
+  <preference for="MM\QuickOrder\Api\Repository\OrderRepositoryInterface"
+              type="MM\QuickOrder\Repository\OrderRepository"/>
+  <preference for="MM\QuickOrder\Api\Model\StatusInterface"
+              type="MM\QuickOrder\Model\Status"/>
+  <preference for="MM\QuickOrder\Api\Repository\StatusRepositoryInterface"
+              type="MM\QuickOrder\Repository\StatusRepository"/>
+
+  <preference for="Magento\CatalogWidget\Block\Product\ProductsList"
+              type="MM\QuickOrder\Block\Product\ProductsList" />
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="quickorder_grid_listing_data_source" xsi:type="string">MM\QuickOrder\Model\ResourceModel\Order\Grid\Collection</item>
+            </argument>
+        </arguments>
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="quickorder_status_listing_data_source" xsi:type="string">MM\QuickOrder\Model\ResourceModel\Status\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

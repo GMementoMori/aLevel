@@ -10,7 +10,7 @@ $(document).ready(function(){
       console.log(values);  
       $.ajax({
          url: "test.php",
-         data:({ values }),
+         data:{ values },
          type: "POST",
          dataType: "html",
          success: function (data) {

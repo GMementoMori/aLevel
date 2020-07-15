@@ -1,0 +1,79 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()) :?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity()) :?>
+                <div class="field qty">
+                    <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+                    <div class="control">
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               min="0"
+                               value="<?= $block->getProductDefaultQty() * 1 ?>"
+                               title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+                               class="input-text qty"
+                               data-validate="<?= $block->escapeHtmlAttr(json_encode($block->getQuantityValidators())) ?>"
+                        />
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="actions">
+                <button type="submit"
+                        title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button" disabled>
+                    <span><?= $block->escapeHtml($buttonTitle) ?></span>
+                </button>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+
+
+<div id="modal-form" style="display:none;">
+  <input type="text" id="name_quick_order" placeholder="Take your name">
+  <input type="text" id="phone_quick_order" placeholder="Take your phone">
+  <input type="text" id="email_quick_order" placeholder="Take your email">
+</div>
+
+<a class="action open-modal-form"
+   href="#"
+   title="Modal">
+    <span style="
+          color: #fff;
+          background: #1979c3;;
+          cursor: pointer;
+          font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+          font-weight: 600;
+          border:1px solid #1979c3;
+          width:100%;
+    ">
+    Quick Order
+    </span>
+</a>
+
+<script type="text/x-magento-init">
+    {
+        ".open-modal-form": {
+            "MM_QuickOrder/js/quickorder": {}
+        }
+    }
+</script>
