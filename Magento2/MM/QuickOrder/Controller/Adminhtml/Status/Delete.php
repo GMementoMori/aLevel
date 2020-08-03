@@ -32,10 +32,10 @@ class Delete extends Action
           if (!empty($id)) {
               try {
                   $this->repository->deleteById($id);
+                  $this->messageManager->addSuccessMessage(sprintf("Item %d was deleted", $id));
               } catch (NoSuchEntityException|CouldNotDeleteException $e) {
                   $this->logger->info(sprintf("item %d already delete", $id));
               }
-              $this->messageManager->addSuccessMessage(sprintf("item %d was deleted", $id));
           } else {
               $this->messageManager->addWarningMessage(__("Please select status id"));
           }

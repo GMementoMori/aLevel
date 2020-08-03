@@ -72,27 +72,29 @@ use Magento\Framework\App\Action\Action;
                                                                 <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
                                                             </button>
                                                         </form>
-                                                        <div style="margin-top:4px; margin-left:8.5px;">
-                                                            <a href="#"
+                                                        <div style="margin-top: 1%;">
+                                                            <button
+                                                               type="button"
                                                                class="action open-modal-formWidget"
                                                                data-sku="<?= $_item->getSku();?>"
+                                                               style="
+                                                                     color: #fff;
+                                                                     background: #1979c3;
+                                                                     border-radius: 0;
+                                                                     font-size: 1.3rem;
+                                                                     border: 0px solid #1979c3;
+                                                                     float: left;
+                                                                     "
                                                                data-mage-init='
                                                                            {
                                                                                "MM_QuickOrder/js/quickorderWidget": {}
                                                                            }
                                                                            '
                                                                >
-                                                               <span style="
-                                                                      color: #fff;
-                                                                      background: #1979c3;;
-                                                                      cursor: pointer;
-                                                                      font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
-                                                                      font-weight: 600;
-                                                                      border:1px solid #1979c3;
-                                                                      ">
-                                                                  Quick Order
+                                                               <span>
+                                                                  <?=__('Quick Order');?>
                                                                </span>
-                                                             </a>
+                                                             </button>
                                                         </div>
                                                     <?php else : ?>
                                                         <?php if ($_item->getIsSalable()) : ?>

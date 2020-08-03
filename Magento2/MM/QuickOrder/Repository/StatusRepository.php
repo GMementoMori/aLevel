@@ -18,29 +18,15 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class StatusRepository implements StatusRepositoryInterface
 {
-    /**
-     * @var ResourceModel
-     */
+
     private $resource;
 
-    /**
-     * @var ModelFactory
-     */
     private $modelFactory;
 
-    /**
-     * @var CollectionFactory
-     */
     private $collectionFactory;
 
-    /**
-     * @var CollectionProcessorInterface
-     */
     private $processor;
 
-    /**
-     * @var SearchResultsInterfaceFactory
-     */
     private $searchResultFactory;
 
     public function __construct(
@@ -57,9 +43,6 @@ class StatusRepository implements StatusRepositoryInterface
         $this->searchResultFactory  = $searchResultFactory;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getById(int $id): StatusInterface
     {
         $order = $this->modelFactory->create();
@@ -73,17 +56,12 @@ class StatusRepository implements StatusRepositoryInterface
         return $order;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getList(SearchCriteriaInterface $searchCriteria): SearchResultsInterface
     {
-        /** @var Collection $collection */
         $collection = $this->collectionFactory->create();
 
         $this->processor->process($searchCriteria, $collection);
 
-        /** @var SearchResultsInterface $searchResult */
         $searchResult = $this->searchResultFactory->create();
 
         $searchResult->setSearchCriteria($searchCriteria);
@@ -93,24 +71,17 @@ class StatusRepository implements StatusRepositoryInterface
         return $searchResult;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function save(StatusInterface $status): StatusInterface
     {
         try {
             $this->resource->save($status);
         } catch (\Exception $e) {
-            // added logger
             throw new CouldNotSaveException(__("Status could not save"));
         }
 
         return $status;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function delete(StatusInterface $status): StatusRepositoryInterface
     {
         try {
@@ -122,9 +93,6 @@ class StatusRepository implements StatusRepositoryInterface
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function deleteById(int $id): StatusRepositoryInterface
     {
         $status = $this->getById($id);

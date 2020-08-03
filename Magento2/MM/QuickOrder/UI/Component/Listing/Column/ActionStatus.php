@@ -38,8 +38,8 @@ class ActionStatus extends Column
                         'href' => $this->urlBuilder->getUrl(self::URL_PATH_DELETE, ['id' => $item['status_id']]),
                         'label' => __('Delete'),
                         'confirm' => [
-                            'title' => __('Delete "${ $.$data.name }"'),
-                            'message' => __('Are you sure you wan\'t to delete a "${ $.$data.name }" status?')
+                            'title' => __('Delete "${ $.$data.status }"'),
+                            'message' => __('Are you sure you wan\'t to delete a "${ $.$data.status }" status?')
                         ]
                     ];
                 }

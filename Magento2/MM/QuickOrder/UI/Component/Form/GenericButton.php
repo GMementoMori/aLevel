@@ -9,20 +9,11 @@ use MM\QuickOrder\Api\Repository\StatusRepositoryInterface;
 
 class GenericButton
 {
-    /**
-     * @var Context
-     */
+
     protected $context;
 
-    /**
-     * @var StatusRepositoryInterface
-     */
     protected $repository;
 
-    /**
-     * @param Context $context
-     * @param StatusRepositoryInterface $blockRepository
-     */
     public function __construct(
         Context $context,
         StatusRepositoryInterface $blockRepository
@@ -31,11 +22,6 @@ class GenericButton
         $this->repository = $blockRepository;
     }
 
-    /**
-     * Return CMS block ID
-     *
-     * @return int|null
-     */
     public function getStatusId()
     {
         try {
@@ -47,13 +33,6 @@ class GenericButton
         return null;
     }
 
-    /**
-     * Generate url by route and parameters
-     *
-     * @param   string $route
-     * @param   array $params
-     * @return  string
-     */
     public function getUrl($route = '', $params = [])
     {
         return $this->context->getUrlBuilder()->getUrl($route, $params);

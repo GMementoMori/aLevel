@@ -12,6 +12,7 @@
 
   <preference for="Magento\CatalogWidget\Block\Product\ProductsList"
               type="MM\QuickOrder\Block\Product\ProductsList" />
+
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

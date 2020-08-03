@@ -8,6 +8,7 @@
 ?>
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
+
 <?php if ($_product->isSaleable()) :?>
     <div class="box-tocart">
         <div class="fieldset">
@@ -35,6 +36,32 @@
                     <span><?= $block->escapeHtml($buttonTitle) ?></span>
                 </button>
                 <?= $block->getChildHtml('', true) ?>
+                <button
+                   type="button"
+                   class="action open-modal-form"
+                   title="Modal"
+                   style="
+                      color: #fff;
+                      background: #1979c3;
+                      border-radius: 0;
+                      font-size: 1.8rem;
+                      font-weight: 600;
+                      width: 49%;
+                      border: 0px solid #1979c3;
+                      float: left;
+                    "
+                    data-mage-init='
+                             {
+                                 "MM_QuickOrder/js/quickorder": {}
+                             }
+                    '>
+
+                    <span>
+
+                    <?=__('Quick Order');?>
+
+                    </span>
+                </button>
             </div>
         </div>
     </div>
@@ -53,27 +80,3 @@
   <input type="text" id="phone_quick_order" placeholder="Take your phone">
   <input type="text" id="email_quick_order" placeholder="Take your email">
 </div>
-
-<a class="action open-modal-form"
-   href="#"
-   title="Modal">
-    <span style="
-          color: #fff;
-          background: #1979c3;;
-          cursor: pointer;
-          font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
-          font-weight: 600;
-          border:1px solid #1979c3;
-          width:100%;
-    ">
-    Quick Order
-    </span>
-</a>
-
-<script type="text/x-magento-init">
-    {
-        ".open-modal-form": {
-            "MM_QuickOrder/js/quickorder": {}
-        }
-    }
-</script>

@@ -6,6 +6,7 @@ use MM\QuickOrder\Api\Model\OrderInterfaceFactory;
 use MM\QuickOrder\Api\Repository\OrderRepositoryInterface;
 use MM\QuickOrder\Model\Order;
 use Magento\Backend\App\Action;
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Controller\ResultFactory;
@@ -20,6 +21,8 @@ class Edit extends Action
 
     private $dataPersistor;
 
+    private $fullDate;
+
     private $logger;
 
     public function __construct(
@@ -27,11 +30,13 @@ class Edit extends Action
         OrderRepositoryInterface $repository,
         OrderInterfaceFactory $orderFactory,
         DataPersistorInterface $dataPersistor,
+        TimezoneInterface $date,
         LoggerInterface $logger
     ) {
         $this->repository       = $repository;
         $this->modelFactory     = $orderFactory;
         $this->dataPersistor    = $dataPersistor;
+        $this->fullDate        = $date;
         $this->logger           = $logger;
 
         parent::__construct($context);
@@ -40,13 +45,17 @@ class Edit extends Action
     public function execute()
     {
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+
         $data = $this->getRequest()->getParam('status');
 
+        $mainDate = $this->fullDate->date()->format('y-m-d h:i:s');
+        
         if (!empty($data)) {
 
             $model = $this->modelFactory->create();
 
             $id = $this->getRequest()->getParam('id');
+
             if ($id) {
                 try {
                     $model = $this->repository->getById($id);
@@ -57,8 +66,8 @@ class Edit extends Action
             }
 
             $model->setStatus($data);
-            $fullDate = date("y-m-d h:i:s");
-            $model->setUpdate_at($fullDate);
+
+            $model->setUpdate_at($mainDate);
 
             try {
                 $this->repository->save($model);

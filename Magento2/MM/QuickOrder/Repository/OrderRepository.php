@@ -18,29 +18,15 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class OrderRepository implements OrderRepositoryInterface
 {
-    /**
-     * @var ResourceModel
-     */
+
     private $resource;
 
-    /**
-     * @var ModelFactory
-     */
     private $modelFactory;
 
-    /**
-     * @var CollectionFactory
-     */
     private $collectionFactory;
 
-    /**
-     * @var CollectionProcessorInterface
-     */
     private $processor;
 
-    /**
-     * @var SearchResultsInterfaceFactory
-     */
     private $searchResultFactory;
 
     public function __construct(
@@ -57,9 +43,6 @@ class OrderRepository implements OrderRepositoryInterface
         $this->searchResultFactory  = $searchResultFactory;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getById(int $id): OrderInterface
     {
         $order = $this->modelFactory->create();
@@ -73,17 +56,12 @@ class OrderRepository implements OrderRepositoryInterface
         return $order;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getList(SearchCriteriaInterface $searchCriteria): SearchResultsInterface
     {
-        /** @var Collection $collection */
         $collection = $this->collectionFactory->create();
 
         $this->processor->process($searchCriteria, $collection);
 
-        /** @var SearchResultsInterface $searchResult */
         $searchResult = $this->searchResultFactory->create();
 
         $searchResult->setSearchCriteria($searchCriteria);
@@ -93,24 +71,17 @@ class OrderRepository implements OrderRepositoryInterface
         return $searchResult;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function save(OrderInterface $order): OrderInterface
     {
         try {
             $this->resource->save($order);
         } catch (\Exception $e) {
-            // added logger
             throw new CouldNotSaveException(__("Order could not save"));
         }
 
         return $order;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function delete(OrderInterface $order): OrderRepositoryInterface
     {
         try {
@@ -122,9 +93,6 @@ class OrderRepository implements OrderRepositoryInterface
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function deleteById(int $id): OrderRepositoryInterface
     {
         $order = $this->getById($id);

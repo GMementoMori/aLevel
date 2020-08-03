@@ -7,9 +7,7 @@ use MM\QuickOrder\UI\Component\Form\GenericButton;
 
 class BackButton extends GenericButton implements ButtonProviderInterface
 {
-    /**
-     * @inheritDoc
-     */
+
     public function getButtonData()
     {
         return [
@@ -20,9 +18,6 @@ class BackButton extends GenericButton implements ButtonProviderInterface
         ];
     }
 
-    /**
-     * @return string
-     */
     private function getBackUrl()
     {
         return $this->getUrl('*/*/listing');

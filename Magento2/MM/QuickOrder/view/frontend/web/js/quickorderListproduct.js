@@ -37,7 +37,7 @@ define(
 
                               record = {name,phone,email,sku};
                           $.ajax({
-                              url: 'quickorder/record/add',
+                              url: 'http://magento2.test/quickorder/record/add',
                               data: record,
                               type: "POST",
                               dataType: 'json'

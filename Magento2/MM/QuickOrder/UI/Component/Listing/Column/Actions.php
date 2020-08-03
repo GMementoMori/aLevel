@@ -9,7 +9,6 @@ use Magento\Ui\Component\Listing\Columns\Column;
 
 class Actions extends Column
 {
-    const URL_PATH_CONVERT = 'mm_quickorder/grid/converttoorder';
     const URL_PATH_DELETE = 'mm_quickorder/grid/delete';
 
     public function __construct(
